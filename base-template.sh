@@ -10,10 +10,6 @@ set_main_variables() {
     HOOK_NAME="$(basename "$1")"
     GIT_DIR="$(cd "$(git rev-parse --git-dir)" && pwd)"
     LOCAL_HOOKS_DIR="${GIT_DIR}/hooks"
-
-    echo "HOOK_NAME: $HOOK_NAME"
-    echo "GIT_DIR: $GIT_DIR"
-    echo "LOCAL_HOOKS_DIR: $LOCAL_HOOKS_DIR"
 }
 
 execute_local_hooks_in() {
