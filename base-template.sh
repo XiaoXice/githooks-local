@@ -33,6 +33,7 @@ execute_hook() {
     [ -f "$HOOK_PATH" ] || return 0
 
     is_auto_generated_by_githooks || return 0
+    is_auto_generated_by_githooks_go || return 0
 
     run_hook_file "$@"
     return $?
@@ -40,6 +41,15 @@ execute_hook() {
 
 is_auto_generated_by_githooks() {
     grep "Base Git hook template from" "$HOOK_PATH"
+    if [ $? -eq 0 ]; then
+        return 1
+    else
+        return 0
+    fi
+}
+
+is_auto_generated_by_githooks_go() {
+    grep "git-hooks run" "$HOOK_PATH"
     if [ $? -eq 0 ]; then
         return 1
     else
